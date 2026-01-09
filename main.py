@@ -67,10 +67,9 @@ if st.button("ANALISAR CONTA"):
         url = f"https://api.brawlstars.com/v1/players/%23{TAG_LIMPA}"
 
         try:
-            with st.spinner('Conectando ao servidor da Supercell...'):
-                res = requests.get(url_oficial, headers=headers, timeout=10)
-                if res.status_code != 200:
-                    res = requests.get(url_proxy, headers=headers, timeout=10)
+            with st.spinner('Buscando dados na Supercell...'):
+                # Fazemos apenas UMA tentativa direta na URL oficial
+                res = requests.get(url, headers=headers, timeout=10)
 
             if res.status_code == 200:
                 data = res.json()
