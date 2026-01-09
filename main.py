@@ -55,14 +55,16 @@ if st.button("ANALISAR CONTA"):
     if tag_input:
         # Tenta pegar o Token do Streamlit Secrets OU usa o Token direto abaixo
         # Se for colar direto, substitua 'SEU_TOKEN_AQUI' pelo seu token da Supercell
-        TOKEN_FINAL = st.secrets.get("BRAWL_TOKEN", "COLE_SEU_TOKEN_AQUI").strip()
+        TOKEN_FINAL = st.secrets["BRAWL_TOKEN"]
         
-        TAG_FINAL = tag_input.replace("#", "").replace(" ", "").strip().upper()
-        headers = {"Authorization": f"Bearer {TOKEN_FINAL}", "Accept": "application/json"}
+        TAG_LIMPA = tag_input.strip().replace("#", "").upper()
         
-        # No Streamlit Cloud, tentamos direto a Oficial primeiro porque o IP é melhor
-        url_oficial = f"https://api.brawlstars.com/v1/players/%23{TAG_FINAL}"
-        url_proxy = f"https://bsproxy.vercel.app/api/v1/players/%23{TAG_FINAL}"
+        headers = {
+            "Authorization": f"Bearer {TOKEN_FINAL}",
+            "Accept": "application/json"
+        }
+        
+        url = f"https://api.brawlstars.com/v1/players/%23{TAG_LIMPA}"
 
         try:
             with st.spinner('Conectando ao servidor da Supercell...'):
