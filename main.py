@@ -61,7 +61,8 @@ if st.button("ANALISAR CONTA"):
         
         headers = {
             "Authorization": f"Bearer {TOKEN_FINAL}",
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
         
         url = f"https://api.brawlstars.com/v1/players/%23{TAG_LIMPA}"
